@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -70,19 +71,26 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+       public function edit($id)
     {
-        //
+        $user = User::findOrFail($id); // Obtém o usuário pelo ID ou falha se não encontrar
+        return view('users.edit', compact('user')); // Retorna a view de edição com os dados do usuário
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserEditRequest $request, $id)
     {
-        //
-    }
+        $user = User::findOrFail($id); // Obtém o usuário pelo ID ou falha se não encontrar
+        
+        // Atualiza os dados do usuário com base na requisição validada
+        $user->update($request->validated());
 
+        return redirect()->route('users.index') // Redireciona para a lista de usuários ou para onde preferir
+            ->with('success', 'Usuário atualizado com sucesso!');
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
