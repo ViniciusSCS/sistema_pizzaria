@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
  * Class UserController
  *
  * @package App\Http\Controllers
- * @author Vinícius Sarmento
+ * @author Vinícius Siqueira
  * @link https://github.com/ViniciusSCS
  * @date 2024-08-23 21:48:54
  * @copyright UniEVANGÉLICA
@@ -22,7 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::select('id', 'name', 'email')->paginate('2');
+        $user = User::select('id', 'name', 'email')
+            ->withTrashed()
+            ->paginate('10');
 
         return [
             'status' => 200,
@@ -64,7 +67,21 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+
+        if(!$user){
+            return [
+                'status' => 404,
+                'mensage' => 'Usuário não encontrado! Que triste!',
+                'user' => $user
+            ];
+        }
+
+        return [
+            'status' => 200,
+            'mensage' => 'Usuário encontrado com sucesso!!',
+            'user' => $user
+        ];
     }
 
     /**
@@ -78,9 +95,27 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $user = User::find($id);
+
+        if(!$user){
+            return [
+                'status' => 404,
+                'mensage' => 'Usuário não encontrado! Que triste!',
+                'user' => $user
+            ];
+        }
+
+        $user->update($data);
+
+        return [
+            'status' => 200,
+            'mensage' => 'Usuário atualizado com sucesso!!',
+            'user' => $user
+        ];
     }
 
     /**
@@ -88,6 +123,22 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+
+        if(!$user){
+            return [
+                'status' => 404,
+                'mensage' => 'Usuário não encontrado! Que triste!',
+                'user' => $user
+            ];
+        }
+
+        $user->delete($id);
+
+        return [
+            'status' => 200,
+            'mensage' => 'Usuário deletado com sucesso!!'
+        ];
+
     }
 }
