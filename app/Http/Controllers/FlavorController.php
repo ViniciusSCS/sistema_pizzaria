@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Enums\TamanhoEnum;
 use App\Models\Flavor;
 use App\Http\Requests\{
     FlavorCreatRequest
@@ -36,7 +37,7 @@ class FlavorController extends Controller
         $flavor = Flavor::create([
             'sabor' => $data['sabor'],
             'preco' => $data['preco'],
-            'tamanho' => $data['tamanho'],
+            'tamanho' => TamanhoEnum::from($data['tamanho']),
         ]);
 
         return [

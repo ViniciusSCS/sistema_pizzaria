@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('sabor');
             $table->decimal('preco', 8, 2);
             $table->enum('tamanho', [
+                TamanhoEnum::grande->value,
                 TamanhoEnum::media->value,
                 TamanhoEnum::pequena->value
             ]);
