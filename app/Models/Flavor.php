@@ -6,7 +6,7 @@ use App\Http\Enums\TamanhoEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sabor extends Model
+class Flavor extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Sabor extends Model
 
     protected $fillable = [
         'sabor',
-        'valor',
+        'preco',
         'tamanho'
     ];
 }

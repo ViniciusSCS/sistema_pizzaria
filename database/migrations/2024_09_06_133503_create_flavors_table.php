@@ -12,12 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sabores', function (Blueprint $table) {
+        Schema::create('flavors', function (Blueprint $table) {
             $table->id();
             $table->string('sabor');
-            $table->float('valor');
+            $table->decimal('preco', 8, 2);
             $table->enum('tamanho', [
-                TamanhoEnum::grande->value,
                 TamanhoEnum::media->value,
                 TamanhoEnum::pequena->value
             ]);
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sabores');
+        Schema::dropIfExists('flavors');
     }
 };

@@ -72,14 +72,14 @@ class UserController extends Controller
         if(!$user){
             return [
                 'status' => 404,
-                'mensage' => 'Usuário não encontrado! Que triste!',
+                'message' => 'Usuário não encontrado! Que triste!',
                 'user' => $user
             ];
         }
 
         return [
             'status' => 200,
-            'mensage' => 'Usuário encontrado com sucesso!!',
+            'message' => 'Usuário encontrado com sucesso!!',
             'user' => $user
         ];
     }
@@ -104,7 +104,7 @@ class UserController extends Controller
         if(!$user){
             return [
                 'status' => 404,
-                'mensage' => 'Usuário não encontrado! Que triste!',
+                'message' => 'Usuário não encontrado! Que triste!',
                 'user' => $user
             ];
         }
@@ -113,7 +113,7 @@ class UserController extends Controller
 
         return [
             'status' => 200,
-            'mensage' => 'Usuário atualizado com sucesso!!',
+            'message' => 'Usuário atualizado com sucesso!!',
             'user' => $user
         ];
     }
@@ -128,7 +128,7 @@ class UserController extends Controller
         if(!$user){
             return [
                 'status' => 404,
-                'mensage' => 'Usuário não encontrado! Que triste!',
+                'message' => 'Usuário não encontrado! Que triste!',
                 'user' => $user
             ];
         }
@@ -137,7 +137,7 @@ class UserController extends Controller
 
         return [
             'status' => 200,
-            'mensage' => 'Usuário deletado com sucesso!!'
+            'message' => 'Usuário deletado com sucesso!!'
         ];
 
     }
