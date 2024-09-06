@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
-    SaborController,
+    FlavorController,
     UserController
 };
 use Illuminate\Support\Facades\Route;
@@ -16,9 +16,9 @@ Route::prefix('/user')->group(function (){
 });
 
 Route::prefix('/sabor')->group(function (){
-    Route::post('/', [SaborController::class, 'store']);
-    Route::get('/', [SaborController::class, 'index']);
-    Route::put('/atualizar/{id}', [SaborController::class, 'update']);
-    Route::delete('/deletar/{id}', [SaborController::class, 'destroy']);
-    Route::get('/visualizar/{id}', [SaborController::class, 'show']);
+    Route::post('/', [FlavorController::class, 'store']);
+    Route::get('/', [FlavorController::class, 'index']);
+    Route::put('/atualizar/{id}', [FlavorController::class, 'update']);
+    Route::delete('/deletar/{id}', [FlavorController::class, 'destroy']);
+    Route::get('/visualizar/{id}', [FlavorController::class, 'show']);
 });
