@@ -17,7 +17,6 @@ class FlavorController extends Controller
     public function index()
     {
         $flavors = Flavor::select('id', 'sabor', 'preco', 'tamanho')
-            ->withTrashed()
             ->paginate('10');
 
         return [
