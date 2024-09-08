@@ -6,6 +6,17 @@ use App\Http\Enums\TamanhoEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Flavor
+ *
+ * @package App\Models
+ * @author Vinícius Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 2024-09-06 11:23:14
+ * @copyright UniEVANGÉLICA
+ * @method static find(string $id)
+ * @method static create(array $array)
+ */
 class Flavor extends Model
 {
     use HasFactory;
