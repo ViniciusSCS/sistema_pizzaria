@@ -27,4 +27,13 @@ class AuthController extends Controller
             ];
         }
     }
+
+    public function logout(Request $request)
+    {
+        $tokenId = $request->user()->token()->id;
+
+        $this->tokenRepository->revokeAccessToken($tokenId);
+
+        return ['status' => true, 'message' => "Usuário deslogado!"];
+    }
 }
