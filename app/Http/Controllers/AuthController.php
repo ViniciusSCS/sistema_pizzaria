@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\TokenRepository;
 
 class AuthController extends Controller
 {
+    protected $tokenRepository;
+
+    public function __construct(TokenRepository $tokenRepository)
+    {
+        $this->tokenRepository = $tokenRepository;
+    }
     public function login(Request $request)
     {
         $data = $request->all();
@@ -27,7 +34,6 @@ class AuthController extends Controller
             ];
         }
     }
-
     public function logout(Request $request)
     {
         $tokenId = $request->user()->token()->id;
