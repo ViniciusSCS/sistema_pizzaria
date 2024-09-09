@@ -14,6 +14,7 @@ class AuthController extends Controller
     {
         $this->tokenRepository = $tokenRepository;
     }
+    
     public function login(Request $request)
     {
         $data = $request->all();
@@ -34,6 +35,7 @@ class AuthController extends Controller
             ];
         }
     }
+    
     public function logout(Request $request)
     {
         $tokenId = $request->user()->token()->id;
