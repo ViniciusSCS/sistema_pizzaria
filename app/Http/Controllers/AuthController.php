@@ -42,6 +42,6 @@ class AuthController extends Controller
 
         $this->tokenRepository->revokeAccessToken($tokenId);
 
-        return ['status' => true, 'message' => "Usuário deslogado!"];
+        return ['status' => true, 'message' => "Usuário deslogado com sucesso!"];
     }
 }
