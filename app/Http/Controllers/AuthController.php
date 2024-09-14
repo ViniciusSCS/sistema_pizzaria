@@ -16,11 +16,15 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
+        //Receber a credencial (email e senha)
         $data = $request->all();
 
+        //Verificoaas credenciais estão no Banco
         if (Auth::attempt(['email' => strtolower($data['email']), 'password' => $data['password']])) {
+            //Autentica o usuário
             $user = auth()->user();
 
+            //cria um token
             $user->token = $user->createToken($user->email)->accessToken;
             return [
                 'status' => 200,
