@@ -14,6 +14,7 @@ class AuthController extends Controller
     {
         $this->tokenRepository = $tokenRepository;
     }
+    
     public function login(Request $request)
     {
         //Receber a credencial (email e senha)
@@ -38,12 +39,13 @@ class AuthController extends Controller
             ];
         }
     }
+    
     public function logout(Request $request)
     {
         $tokenId = $request->user()->token()->id;
 
         $this->tokenRepository->revokeAccessToken($tokenId);
 
-        return ['status' => true, 'message' => "Usuário deslogado!"];
+        return ['status' => true, 'message' => "Usuário deslogado com sucesso!"];
     }
 }
