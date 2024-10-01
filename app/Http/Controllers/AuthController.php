@@ -14,13 +14,13 @@ class AuthController extends Controller
     {
         $this->tokenRepository = $tokenRepository;
     }
-    
+
     public function login(Request $request)
     {
         //Receber a credencial (email e senha)
         $data = $request->all();
 
-        //Verificoaas credenciais estão no Banco
+        //Verificar se credenciais estão no Banco
         if (Auth::attempt(['email' => strtolower($data['email']), 'password' => $data['password']])) {
             //Autentica o usuário
             $user = auth()->user();
@@ -39,7 +39,7 @@ class AuthController extends Controller
             ];
         }
     }
-    
+
     public function logout(Request $request)
     {
         $tokenId = $request->user()->token()->id;

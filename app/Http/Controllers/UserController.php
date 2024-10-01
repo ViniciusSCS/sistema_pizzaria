@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserController
@@ -37,9 +38,15 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function me()
     {
+        $user = Auth::user();
 
+        return [
+            'status' => 200,
+            'message' => 'Usuário logado!',
+            "usuario" => $user
+        ];
     }
 
     /**
