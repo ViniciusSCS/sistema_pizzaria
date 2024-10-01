@@ -9,6 +9,15 @@ use App\Http\Requests\{
 };
 use Illuminate\Http\Request;
 
+/**
+ * Class FlavorController
+ *
+ * @package App\Http\Controllers
+ * @author Vinícius Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 2024-10-01 15:52:04
+ * @copyright UniEVANGÉLICA
+ */
 class FlavorController extends Controller
 {
     /**

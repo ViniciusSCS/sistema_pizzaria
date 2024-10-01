@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\TokenRepository;
 
+/**
+ * Class AuthController
+ *
+ * @package App\Http\Controllers
+ * @author Vinícius Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 2024-10-01 15:52:14
+ * @copyright UniEVANGÉLICA
+ */
 class AuthController extends Controller
 {
     protected $tokenRepository;

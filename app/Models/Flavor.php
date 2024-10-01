@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @copyright UniEVANGÉLICA
  * @method static find(string $id)
  * @method static create(array $array)
+ * @method static select(string $string, string $string1, string $string2, string $string3)
  */
 class Flavor extends Model
 {
