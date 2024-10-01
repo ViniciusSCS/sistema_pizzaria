@@ -21,14 +21,12 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/deletar/{id}', [UserController::class, 'destroy']);
         Route::get('/visualizar/{id}', [UserController::class, 'show']);
     });
-});
 
-
-
-Route::prefix('/sabor')->group(function (){
-    Route::post('/', [FlavorController::class, 'store']);
-    Route::get('/', [FlavorController::class, 'index']);
-    Route::put('/atualizar/{id}', [FlavorController::class, 'update']);
-    Route::delete('/deletar/{id}', [FlavorController::class, 'destroy']);
-    Route::get('/visualizar/{id}', [FlavorController::class, 'show']);
+    Route::prefix('/sabor')->group(function (){
+        Route::post('/', [FlavorController::class, 'store']);
+        Route::get('/', [FlavorController::class, 'index']);
+        Route::put('/atualizar/{id}', [FlavorController::class, 'update']);
+        Route::delete('/deletar/{id}', [FlavorController::class, 'destroy']);
+        Route::get('/visualizar/{id}', [FlavorController::class, 'show']);
+    });
 });
