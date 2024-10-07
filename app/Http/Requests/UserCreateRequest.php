@@ -33,8 +33,7 @@ class UserCreateRequest extends FormRequest
                     ->letters()
                     ->mixedCase()
                     ->numbers()
-                    ->symbols()
-                    ->uncompromised(),
+                    ->symbols(),
             ],
             'password_confirmation' => 'required|same:password'
         ];
