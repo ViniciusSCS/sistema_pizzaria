@@ -51,10 +51,10 @@ class UserCreateRequest extends FormRequest
             'confirmed' => 'O campo :attribute não confere.',
             'same' => 'Os campos confirmação da senha e senha devem corresponder.',
             'min' => 'O campo :attribute deve ter no mínimo :min caracteres.',
-            'letters' => 'O campo :attribute deve conter ao menos uma letra.',
-            'mixedCase' => 'O campo :attribute deve conter ao menos uma letra maiúscula e uma letra minúscula.',
-            'symbols' => 'O campo :attribute deve conter ao menos um simbolo.',
-            'numbers' => 'O campo :attribute deve conter ao menos um número.'
+            'password.letters' => 'O campo :attribute deve conter ao menos uma letra.',
+            'password.mixed' => 'O campo :attribute deve conter ao menos uma letra maiúscula e uma letra minúscula.',
+            'password.symbols' => 'O campo :attribute deve conter ao menos um simbolo.',
+            'password.numbers' => 'O campo :attribute deve conter ao menos um número.'
         ];
     }
 }
