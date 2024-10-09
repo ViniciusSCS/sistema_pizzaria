@@ -25,7 +25,6 @@ class UserController extends Controller
     public function index()
     {
         $user = User::select('id', 'name', 'email', 'created_at')
-            ->withTrashed()
             ->paginate('10');
 
         return [
