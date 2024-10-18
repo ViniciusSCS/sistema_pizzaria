@@ -115,6 +115,11 @@ class UserController extends Controller
             ];
         }
 
+        // Verifica se a senha está presente nos dados da requisição
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);  // Criptografa a senha antes de salvar
+        }
+
         $user->update($data);
 
         return [
