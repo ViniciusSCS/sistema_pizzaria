@@ -8,20 +8,24 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Cors
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request)
-            //Acrescente as 3 linhas abaixo
-            ->header('Access-Control-Allow-Origin', "*")
-            ->header('Access-Control-Allow-Methods', "*")
-            ->header('Access-Control-Allow-Credentials', true)
-            ->header('Access-Control-Allow-Headers', 'Accept,X-Requested-With,Content-Type,X-Token-Auth,Authorization')
-            ->header('Access-Control-Expose-Headers', 'X-Debug-Info')
-            ->header('Accept', 'application/json');
+//        return $next($request)
+//            //Acrescente as 3 linhas abaixo
+//            ->header('Access-Control-Allow-Origin', "*")
+//            ->header('Access-Control-Allow-Methods', "PUT, POST, DELETE, GET, OPTIONS")
+//            ->header('Access-Control-Allow-Credentials', true)
+//            ->header('Access-Control-Allow-Headers', 'Accept, X-Requested-With, Content-Type, X-Token-Auth, Authorization')
+//            ->header('Access-Control-Expose-Headers', 'X-Debug-Info')
+//            ->header('Accept', 'application/json');
+        if ($request->isMethod('OPTIONS')) {
+            $response = response('', 200);
+        } else {
+            $response = $next($request);
+        }
+        $response->header('Access-Control-Allow-Methods', 'HEAD, GET, POST, PUT, PATCH, DELETE');
+        $response->header('Access-Control-Allow-Headers', $request->header('Access-Control-Request-Headers'));
+        $response->header('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 }
