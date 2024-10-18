@@ -22,9 +22,11 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = $this->route('id');  // Captura o ID do usuário da rota
+
         return [
             'name' => 'sometimes|string|max:50',
-            'email' => 'sometimes|string|email|max:255|unique:users',
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $userId,
             'password' => [
                 'sometimes',
                 'string',
