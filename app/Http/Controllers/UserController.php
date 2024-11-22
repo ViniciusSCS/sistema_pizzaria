@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\Service\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +20,19 @@ use Illuminate\Support\Facades\Auth;
  */
 class UserController extends Controller
 {
+    protected $service;
+
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::select('id', 'name', 'email', 'created_at')
-            ->paginate('10');
+        $user = $this->service->listar();
 
         return [
             'status' => 200,
@@ -53,13 +60,7 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        $data = $request->all();
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user = $this->service->store($request);
 
         return [
             'status' => 200,
@@ -73,9 +74,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
+        $user = $this->service->find($id);
 
-        if(!$user){
+        if($user == null){
             return [
                 'status' => 404,
                 'message' => 'Usuário não encontrado! Que triste!',
@@ -88,14 +89,6 @@ class UserController extends Controller
             'message' => 'Usuário encontrado com sucesso!!',
             'user' => $user
         ];
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
